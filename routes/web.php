@@ -18,11 +18,3 @@ Route::get('contactanos',[ContactosController::class,'index'])
 
 Route::post('contactanos',[ContactosController::class,'store'])
 ->name('contactanos.store');
-
-/*Route::get('contactos', function () {
-    $correo = new ContactosMailable;
-
-    Mail::to('encalamauricio@gmail.com')->send($correo);
-
-    return "mensaje enviado";
-});*/
