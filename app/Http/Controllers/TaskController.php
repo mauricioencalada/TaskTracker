@@ -29,7 +29,7 @@ class TaskController extends Controller
 
         $task = Task::create($request->all());
 
-        return redirect()->route('tasks.show', $task);
+        return redirect()->route('tasks.show', $task)->with('success','La tarea fue guardada exitosamente!');
     }
 
     public function edit(Task $task)

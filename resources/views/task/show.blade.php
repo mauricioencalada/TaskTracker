@@ -1,24 +1,70 @@
 @extends('layouts.plantilla')
 
-@section('titulo', 'Tarea'.$task->titulo)
+@section('titulo', 'Tarea' . $task->titulo)
 
- @section('content')
-    <h1>Bienvenido a la tarea  {{$task->titulo}}</h1>
-    <a href="{{route('tasks.index')}}">Regresar a la lista</a>
+@section('content')
     <br>
-    <a href="{{route('tasks.edit',$task)}}">Editar tarea</a>
-   
+    <div class="d-flex justify-content-center ">
+        <h1><strong>{{ $task->titulo }}</strong></h1>
+    </div>
+    <br>
+    <!--botones -->
+    <div class="d-flex justify-content-center align-items-center">
+        <a href="{{ route('tasks.index') }}" style="margin-right: 400px;"
+            class="btn btn-warning float-right justify-content-center">Regresar a la lista</a>
+        <a href="{{ route('tasks.edit', $task) }} " class="btn btn-warning float-right justify-content-center">Editar
+            tarea</a>
+    </div>
+    <br>
+    <!-- cuerpo-->
 
-    <p>{{$task->descripcion}}</p> 
-    <h2>{{$task->completed}}</h2> 
-    <h3>{{$task->start_date}}</h3> 
-    <h3>{{$task->due_date}}</h3> 
 
-    <form action="{{route('tasks.destroy',$task)}}" method="POST">
-        @csrf
-        @method('delete')
-        <button type="submit">
-            Eliminar
-        </button>
-    </form>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card d-flex justify-content-center align-items-center">
+                    <div class="card-body">
+                        <div class="container text-center">
+                            <p>{{ $task->descripcion }}</p>
+                        </div>
+                        @if ($task->completed)
+                            <h2><span class="badge text-bg-info">Completo</span></h2>
+                        @else
+                            <h2><span class="badge text-bg-secondary" >Incompleto</span></h2>
+                        @endif
+                        <div class="d-flex justify-content-center ">
+                            <div class="container">
+                                <span> fecha de inico</span>
+                                <br>
+                                <h3 >{{ \Carbon\Carbon::parse($task->start_date)->format('Y-m-d') }}</h3>
+                            </div>
+                            <div class="container">
+                                <span> fecha de inico</span>
+                                <br>
+                                <h3>{{ \Carbon\Carbon::parse($task->due_date)->format('Y-m-d')}}</h3>
+                            </div>
+                            
+                        </div>
+                        <!--boton de eliminar-->
+                        <div class="d-flex justify-content-center ">
+                            <form action="{{ route('tasks.destroy', $task) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-warning float-right justify-content-center">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
 @endsection
