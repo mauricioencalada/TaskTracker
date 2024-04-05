@@ -3,75 +3,96 @@
 @section('titulo', 'Editar Tarea')
 
 @section('content')
-    <h1>formulario para editar una tarea</h1>
+    <div class="d-flex justify-content-center ">
+        <h1><strong>Formulario para editar una Tarea
+            </strong></h1>
+    </div>
 
+    <br>
+    <div class="container text">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-7">
+                <form action="{{ route('tasks.update', $task) }}" method="POST">
+                    @csrf
+                    @method('put')
+                    <label class="form-label justify-content-start ">Nombre </label>
+                    <input type="text" name="titulo" class="form-control" value="{{ old('titulo', $task->titulo) }}"
+                        placeholder="Titulo de la Tarea">
 
-    <form action="{{ route('tasks.update', $task) }}" method="POST">
-        @csrf
-        @method('put')
-        <label>Nombre
-            <input type="text" name="titulo" value="{{ old('titulo', $task->titulo) }}">
-        </label>
-        @error('titulo')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label>Slug
-            <input type="text" name="slug" value="{{ old('slug',$task->slug) }}">
-        </label>
+                    @error('titulo')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
 
-        @error('slug')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label>Descripcion
-            <textarea name="descripcion">{{ $task->descripcion }}</textarea>
-        </label>
-        @error('descripcion')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label>Fecha de Inicio
-            <input name="start_date" type="datetime" value="{{ $task->start_date}}">
-        </label>
-        @error('start_date')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label>Fecha de Fin
-            <input name="due_date" type="datetime" value="{{ $task->due_date}}">
-        </label>
-        @error('due_date')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label>Estado:</label>
-        <select name="completed" value="{{ $task->completed }}">
-            <option value=0>Pendiente</option>
-            <option value=1>Completado</option>
-        </select>
-        <br>
-        <button type="submit">Actualizar </button>
+                    <label class="form-label justify-content-start ">Slug</label>
+                    <input type="text" name="slug" class="form-control" value="{{ old('slug', $task->slug) }}"
+                        placeholder="Slug de la Tarea">
+                    @error('slug')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
+                    <label class="form-label justify-content-start ">Descripcion</label>
+                    <textarea name="descripcion" class="form-control">{{ $task->descripcion }}</textarea>
 
-    </form>
-@endsection
+                    @error('descripcion')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
+                    <div class="d-flex justify-content-center ">
+                        <div class="container">
+                            <label class="form-label justify-content-start ">Fecha de Inicio</label>
+                            <input name="start_date" class="form-control" type="date" value="{{ $task->start_date }}">
+                            @error('start_date')
+                                <br>
+                                <span class="badge text-bg-warning">
+                                    {{ $message }}
+                                </span>
+                                <br>
+                            @enderror
+                        </div>
+                        <div class="container">
+
+                            <label class="form-label justify-content-start ">Fecha de Fin</label>
+                                <input name="due_date" class="form-control" type="date" value="{{ $task->due_date }}">
+                            
+                            @error('due_date')
+                                <br>
+                                <span class="badge text-bg-warning">
+                                    {{ $message }}
+                                </span>
+                                <br>
+                            @enderror
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-center ">
+
+                        <label class="form-label justify-content-start ">Estado</label>
+                    </div>
+                    <select class="form-select" name="completed" value="{{ $task->completed }}">
+                        <option value=0>Pendiente</option>
+                        <option value=1>Completado</option>
+                    </select>
+                    <br>
+                    <div class="d-flex justify-content-center ">
+                        <button type="submit" class="btn btn-warning float-right justify-content-center">
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endsection

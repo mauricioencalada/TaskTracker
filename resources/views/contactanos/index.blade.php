@@ -4,58 +4,64 @@
 
 
 @section('content')
-    <h1>dejanos un mensaje</h1>
+    <div class="d-flex justify-content-center ">
+        <h1><strong>Deja un comentario o mensaje
+            </strong></h1>
+    </div>
 
-    <form action="{{route('contactanos.store')}}" method="POST">
-        @csrf
-        <label >
-            Nombre:
-            <br>
-            <input type="text" name="name">
-        </label>
-        @error('name')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label >
-            Correo:
-            <br>
-            <input type="text" name="correo">
-        </label>
-        @error('correo')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
-        <label >
-            Mensaje:
-            <br>
-            <textarea name="mensaje" rows="5"></textarea>
-        </label>
-        @error('mensaje')
-            <br>
-            <span>
-                {{ $message }}
-            </span>
-            <br>
-        @enderror
-        <br>
+    <!--cuerpo del formulario-->
+    <div class="container text">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-7">
 
-        <button type="submit">
-            Enviar Mensaje
-        </button>
-    </form>
+                <form action="{{ route('contactanos.store') }}" method="POST">
+                    @csrf
+                    <label class="form-label justify-content-start ">Nombre </label>
+                    <input type="text" name="name" class="form-control" placeholder="Titulo de la Tarea">
+                    @error('name')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
+                    <label class="form-label justify-content-start ">Correo </label>
+                    <input type="text" name="correo" class="form-control" placeholder="ejemplo: ejemplo@gmail.com">
+                    @error('correo')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
+                    
+                    <label class="form-label justify-content-start ">Mensaje</label>
+                    <textarea name="mensaje" class="form-control" placeholder="Escribe tu mensaje"></textarea>
+                    @error('mensaje')
+                        <br>
+                        <span class="badge text-bg-warning">
+                            {{ $message }}
+                        </span>
+                        <br>
+                    @enderror
+                    <br>
+                    <div class="d-flex justify-content-center ">
+                        <button type="submit" class="btn btn-warning float-right justify-content-center">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
 
-    @if (session('info'))
-        <script>
-            alert('{{session('info')}}')
-        </script>
-    @endif
+                @if (session('info'))
+                    <script>
+                        alert('{{ session('info') }}')
+                    </script>
+                @endif
+
+            </div>
+        </div>
+    </div>
 @endsection
