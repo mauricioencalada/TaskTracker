@@ -55,6 +55,11 @@
                                     Eliminar
                                 </button>
                             </form>
+                            @if (session('info'))
+                <script>
+                    alert('{{ session('info') }}')
+                </script>
+                @endif
                         </div>
                     </div>
                 </div>

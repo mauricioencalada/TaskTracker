@@ -29,7 +29,7 @@ class TaskController extends Controller
 
         $task = Task::create($request->all());
 
-        return redirect()->route('tasks.show', $task)->with('success','La tarea fue guardada exitosamente!');
+        return redirect()->route('tasks.show', $task)->with('info','La tarea fue guardada exitosamente!');
     }
 
     public function edit(Task $task)
@@ -50,7 +50,7 @@ class TaskController extends Controller
             'due_date' => 'required|date',
         ]);
         $task->update($request->all());
-        return redirect()->route('tasks.show', $task);
+        return redirect()->route('tasks.show', $task)->with('info','La tarea fue editada exitosamente!');
     }
 
     public function destroy(Task $task){

@@ -56,7 +56,7 @@
                     <div class="d-flex justify-content-center ">
                         <div class="container">
                             <label class="form-label justify-content-start ">Fecha de Inicio</label>
-                            <input name="start_date" class="form-control" type="datetime">
+                            <input name="start_date" class="form-control" type="date">
                             @error('start_date')
                                 <br>
                                 <span class="badge text-bg-warning">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="container">
                             <label class="form-label justify-content-start ">Fecha de Fin</label>
-                            <input name="due_date" class="form-control" type="datetime">
+                            <input name="due_date" class="form-control" type="date">
 
                             @error('due_date')
                                 <br>
@@ -104,6 +104,7 @@
                         </button>
                     </div>
                 </form>
+                
                 <br>
             </div>
         </div>

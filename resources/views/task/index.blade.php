@@ -8,6 +8,7 @@
 
 
 @section('content')
+
 <div class="d-flex justify-content-center ">
     <h1 >Lista de tareas</h1>
 </div>
